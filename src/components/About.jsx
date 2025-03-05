@@ -1,40 +1,64 @@
+import { useState } from 'react';
+import karlLogo from '../assets/Karl-picture.jpg';
+import { motion } from "motion/react"
 
 
-// TODO 1: Create a functional component named About that accepts a prop named userInfo 
-const About = ({
-name , 
-JobTitle,
-introduction ,
- TechnologyStack,
-  Tools,
-   Projects,
-}) => {
+const About = ({ name, JobTitle, introduction, TechnologyStack }) => {
 
-    return (
-    
-      <div className="border   max-w-auto min-h-fit  relative ">
-        <div className="border  text-black min-w-64 min-h-80 absolute top-20 left-10 ">
-          <h2 className="text-4xl font-Roboto  font-bold text-left">{name}</h2>
-            <p className="text-3xl font-Roboto font-light text-left">{JobTitle}</p>
-          <div className="mt-10 max-w-md ">
-            <p className="text-sm font-Roboto font-light text-left text-wrap ">{introduction}</p>
-          </div>
-          
-        </div>
+  const [showTech ,setShowTech] = useState(false)
 
-        <div className="border min-w-80 min-h-80 absolute right-14 top-20 " >
-          <div className="bg-amber-400 border min-w-48 min-h-64 rounded-2xl" >
-           <p className="text-center text-2xl"> img</p>
-          </div>
-        </div>
-
-        {/* todo tech stack  */}
+  return (
+    // creates a boundry that centers the content and limits the width of the content
+    <div className="bg-wheatBg max-w-screen-lg mx-auto px-4 py-10">
       
-      </div>
-    
-    )
-    
-    
-    }
+      {/* Name, Intro & Image */}
+      <div className="bg-wheatBg flex flex-col md:flex-row items-center md:items-start">
+        
+        {/* Left Section: Name & Intro */}
+        <motion.div 
+           initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+        className="md:w-1/2 text-center mt-20 md:text-left">
+          <h2 className="text-3xl md:text-xl font-bold">{name}</h2>
+          <p className="text-xl font-light">{JobTitle}</p>
+          <p  className="mt-4 text-gray-700">{introduction}</p>
+        </motion.div>
 
-    export default About;
+        {/* Right Section: Image */}
+        <motion.div 
+           initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.4,
+                scale: { type: "spring", visualDuration: 1, bounce: 0.6 },
+            }}
+        className=" md:w-1/2  flex justify-start md:justify-center  md:mt-0">
+          <div className=" border w-80 h-84 mt-10 rounded-2xl flex items-center justify-center">
+            <img 
+              className='w-80 h-84 fit-cover rounded-2xl'
+            src={karlLogo} alt="karl" />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Tech Stack */}
+      <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
+        <h3>My Tech Stack :</h3>
+        {TechnologyStack.map((tech, index) => (
+          <motion.a
+              whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }} 
+            key={index}
+            href={tech.techUrl}
+            className="text-lg  hover:text-cyan-500  hover:underline "
+          >
+            {tech.name}
+          </motion.a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default About;

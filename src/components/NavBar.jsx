@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-
+import {motion} from "motion/react"
 const NavBar  = () => {
 return(
-    <nav className="flex flex-row justify-between h-12 items-center">
+    <nav className="flex border flex-row justify-between h-12 items-center max-w-screen ">
         <p className="text-3xl ml-12 font-Roboto font-extrabold bg-gradient-to-r  from-black to-cyan-300  text-transparent bg-clip-text ">karl.dev</p>
 
-        <ul className="flex flex-row gap-20 mr-10 font-Roboto   ">
+        <ul 
+       
+        className="flex flex-row gap-20 mr-10 font-Roboto">
             <li>
               <Link to="/about">About</Link>
             </li>
