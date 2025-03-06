@@ -32,7 +32,7 @@ const handleDots = () => {
     <Router>
       <>
       <NavBar/>
-        <div  className=" bg-wheatBg">
+        <div  className="bg-wheatBg">
     <Routes>
   
       {/* root path or startingpoint of the page */}
