@@ -32,11 +32,12 @@ const About = ({ name, JobTitle, introduction, TechnologyStack }) => {
             transition={{
                 duration: 0.4,
                 scale: { type: "spring", visualDuration: 1, bounce: 0.6 },
+              
             }}
-        className=" md:w-1/2  flex justify-start md:justify-center  md:mt-0">
+        className=" md:w-1/2  flex justify-start md:justify-center  md:mt-0 ">
           <div className=" border w-80 h-84 mt-10 rounded-2xl flex items-center justify-center">
             <img 
-              className='w-80 h-84 fit-cover rounded-2xl'
+              className='w-80 h-84 fit-cover rounded-2xl hover:scale-105 transition-transform duration-300 ease-in-out' 
             src={karlLogo} alt="karl" />
           </div>
         </motion.div>
